@@ -68,4 +68,8 @@ npm run dev
 
 ## 배포
 
-- 배포 URL: (배포 후 추가 예정)
+- 배포 URL: https://itda-ki3343yen-giwonkims-projects.vercel.app
+
+> ⚠️ 현재 URL은 Vercel의 **Deployment Protection**이 켜져 있어 Vercel 로그인 없이는
+> 접근할 수 없습니다. 심사/발표 등 외부 공개가 필요하면 Vercel 프로젝트 설정
+> (Settings → Deployment Protection)에서 해제한 뒤 공개 URL로 안내해주세요.
