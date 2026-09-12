@@ -56,13 +56,13 @@ export default function Home() {
 
           <FadeIn delay={0.1} className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/request/new"
+              href="/request/new?role=merchant"
               className="rounded-full bg-brand px-6 py-3 text-[15px] font-medium text-white transition-opacity duration-200 hover:opacity-90"
             >
               무료로 요청하기
             </Link>
             <Link
-              href="/projects"
+              href="/projects?role=student"
               className="rounded-full border border-hairline px-6 py-3 text-[15px] font-medium text-foreground transition-colors duration-200 hover:bg-surface"
             >
               프로젝트 둘러보기
@@ -140,13 +140,13 @@ export default function Home() {
             className="mt-8 flex flex-wrap justify-center gap-3"
           >
             <Link
-              href="/request/new"
+              href="/request/new?role=merchant"
               className="rounded-full bg-brand px-6 py-3 text-[15px] font-medium text-white transition-opacity duration-200 hover:opacity-90"
             >
               소상공인으로 시작하기
             </Link>
             <Link
-              href="/projects"
+              href="/projects?role=student"
               className="rounded-full border border-hairline bg-white px-6 py-3 text-[15px] font-medium text-foreground transition-colors duration-200 hover:bg-surface"
             >
               학생으로 시작하기

@@ -9,6 +9,7 @@ import { Badge } from "@/components/common/badge";
 import { supabase } from "@/lib/supabase";
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from "@/lib/labels";
 import type { DbProject } from "@/lib/types";
+import { useRole } from "@/context/role-context";
 
 export default function RequestReviewPage({
   params,
@@ -16,6 +17,7 @@ export default function RequestReviewPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
+  const { withRole } = useRole();
   const [project, setProject] = useState<DbProject | null>(null);
   const [loading, setLoading] = useState(true);
   const [approving, setApproving] = useState(false);
@@ -69,7 +71,7 @@ export default function RequestReviewPage({
           {error ?? "프로젝트를 찾을 수 없습니다."}
         </p>
         <Link
-          href="/request/new"
+          href={withRole("/request/new")}
           className="mt-4 inline-block text-[15px] font-medium text-brand"
         >
           다시 요청하기
@@ -133,7 +135,7 @@ export default function RequestReviewPage({
           </div>
 
           <Link
-            href="/request/new"
+            href={withRole("/request/new")}
             className="mt-6 inline-block rounded-full border border-hairline px-5 py-2.5 text-[15px] font-medium text-foreground transition-colors duration-200 hover:bg-surface"
           >
             다시 작성하기
@@ -215,7 +217,7 @@ export default function RequestReviewPage({
                   {approving ? "처리 중..." : "승인하고 모집 시작"}
                 </button>
                 <Link
-                  href="/request/new"
+                  href={withRole("/request/new")}
                   className="rounded-full border border-hairline px-5 py-2.5 text-[15px] font-medium text-foreground transition-colors duration-200 hover:bg-surface"
                 >
                   다시 작성하기
@@ -227,7 +229,7 @@ export default function RequestReviewPage({
           {approved && (
             <FadeIn delay={0.25} className="mt-4">
               <Link
-                href="/projects"
+                href={withRole("/projects")}
                 className="text-[14px] font-medium text-brand"
               >
                 프로젝트 목록으로 이동 →

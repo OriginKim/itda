@@ -11,6 +11,7 @@ import { calculateMatchScore, toMatchProject, toMatchStudent } from "@/lib/match
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from "@/lib/labels";
 import type { DbMerchant, DbProject, DbStudent } from "@/lib/types";
 import { useCurrentStudentId } from "@/hooks/use-current-student";
+import { useRole } from "@/context/role-context";
 
 type ProjectWithMerchant = DbProject & {
   merchants: Pick<DbMerchant, "name" | "category" | "district"> | null;
@@ -18,6 +19,7 @@ type ProjectWithMerchant = DbProject & {
 
 function ProjectsContent() {
   const { studentId, setStudentId } = useCurrentStudentId();
+  const { withRole } = useRole();
   const [students, setStudents] = useState<DbStudent[]>([]);
   const [projects, setProjects] = useState<ProjectWithMerchant[]>([]);
   const [loading, setLoading] = useState(true);
@@ -131,9 +133,11 @@ function ProjectsContent() {
             return (
               <FadeIn key={project.id} delay={0.05 * (index % 6)}>
                 <Link
-                  href={`/projects/${project.id}${
-                    studentId ? `?studentId=${studentId}` : ""
-                  }`}
+                  href={withRole(
+                    `/projects/${project.id}${
+                      studentId ? `?studentId=${studentId}` : ""
+                    }`,
+                  )}
                   className="block h-full rounded-xl border border-hairline bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md"
                 >
                   <div className="flex items-start justify-between gap-3">

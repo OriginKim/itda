@@ -16,6 +16,7 @@ export const ROLES: Role[] = ["merchant", "student", "admin"];
 type RoleContextValue = {
   role: Role;
   setRole: (role: Role) => void;
+  withRole: (path: string) => string;
 };
 
 const RoleContext = createContext<RoleContextValue | null>(null);
@@ -41,7 +42,22 @@ export function RoleProvider({ children }: { children: ReactNode }) {
     [pathname, router, searchParams],
   );
 
-  const value = useMemo(() => ({ role, setRole }), [role, setRole]);
+  // 다른 화면으로 이동할 때도 현재 역할(role)이 URL에서 유지되도록
+  // 링크/router.push 대상 경로에 role 쿼리를 붙여주는 헬퍼.
+  const withRole = useCallback(
+    (path: string) => {
+      const [base, query = ""] = path.split("?");
+      const params = new URLSearchParams(query);
+      params.set("role", role);
+      return `${base}?${params.toString()}`;
+    },
+    [role],
+  );
+
+  const value = useMemo(
+    () => ({ role, setRole, withRole }),
+    [role, setRole, withRole],
+  );
 
   return <RoleContext.Provider value={value}>{children}</RoleContext.Provider>;
 }

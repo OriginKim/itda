@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import { Container } from "@/components/common/container";
 import { FadeIn } from "@/components/common/fade-in";
 import { supabase } from "@/lib/supabase";
+import { useRole } from "@/context/role-context";
 
 type Merchant = {
   id: string;
@@ -16,6 +17,7 @@ type Merchant = {
 
 export default function NewRequestPage() {
   const router = useRouter();
+  const { withRole } = useRole();
   const [merchants, setMerchants] = useState<Merchant[]>([]);
   const [merchantId, setMerchantId] = useState("");
   const [rawRequest, setRawRequest] = useState("");
@@ -93,7 +95,7 @@ export default function NewRequestPage() {
         throw new Error("프로젝트 저장에 실패했습니다.");
       }
 
-      router.push(`/request/${data.id}/review`);
+      router.push(withRole(`/request/${data.id}/review`));
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "알 수 없는 오류가 발생했습니다.",
