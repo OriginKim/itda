@@ -8,23 +8,7 @@ import { FadeIn } from "@/components/common/fade-in";
 import { Badge } from "@/components/common/badge";
 import { supabase } from "@/lib/supabase";
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from "@/lib/labels";
-
-type ProjectRow = {
-  id: string;
-  raw_request: string;
-  title: string | null;
-  goal: string | null;
-  category: string | null;
-  deliverables: string[] | null;
-  required_skills: string[] | null;
-  difficulty: string | null;
-  estimated_hours: number | null;
-  duration_days: number | null;
-  is_out_of_scope: boolean;
-  out_of_scope_reason: string | null;
-  suggested_split: string[] | null;
-  status: string;
-};
+import type { DbProject } from "@/lib/types";
 
 export default function RequestReviewPage({
   params,
@@ -32,7 +16,7 @@ export default function RequestReviewPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const [project, setProject] = useState<ProjectRow | null>(null);
+  const [project, setProject] = useState<DbProject | null>(null);
   const [loading, setLoading] = useState(true);
   const [approving, setApproving] = useState(false);
   const [approved, setApproved] = useState(false);

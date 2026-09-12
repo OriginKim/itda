@@ -1,6 +1,8 @@
 // 매칭 점수 계산 (PROJECT.md 6장)
 // 총점(100) = 스킬(40) + 가용시간(20) + 경험(20) + 관심분야(10) + 신뢰도(10)
 
+import type { DbProject, DbStudent } from "./types";
+
 export type MatchStudent = {
   skills: string[];
   interests: string[];
@@ -59,5 +61,24 @@ export function calculateMatchScore(
   return {
     total,
     breakdown: { skill, availability, experience, interest, trust },
+  };
+}
+
+export function toMatchStudent(student: DbStudent): MatchStudent {
+  return {
+    skills: student.skills,
+    interests: student.interests,
+    weeklyHours: student.weekly_hours,
+    completedCount: student.completed_count,
+    completionRate: student.completion_rate,
+    ontimeRate: student.ontime_rate,
+  };
+}
+
+export function toMatchProject(project: DbProject): MatchProject {
+  return {
+    requiredSkills: project.required_skills ?? [],
+    category: project.category ?? "",
+    estimatedHours: project.estimated_hours ?? 1,
   };
 }
