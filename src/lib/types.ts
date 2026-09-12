@@ -83,3 +83,12 @@ export type DbApplication = {
   status: string;
   created_at: string;
 };
+
+export type DbIssue = {
+  id: string;
+  project_id: string;
+  type: string;
+  description: string | null;
+  status: string;
+  created_at: string;
+};
