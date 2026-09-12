@@ -22,3 +22,64 @@ export type StructuredProject = {
   outOfScopeReason: string | null;
   suggestedSplit: string[]; // 범위 초과 시 쪼갠 프로젝트 제안
 };
+
+// ============================================================
+// Supabase 테이블 로우 타입 (supabase/schema.sql과 대응)
+// ============================================================
+export type DbStudent = {
+  id: string;
+  name: string;
+  major: string;
+  skills: string[];
+  interests: string[];
+  weekly_hours: number;
+  completed_count: number;
+  completion_rate: number;
+  ontime_rate: number;
+  created_at: string;
+};
+
+export type DbMerchant = {
+  id: string;
+  name: string;
+  category: string;
+  district: string;
+  created_at: string;
+};
+
+export type DbProject = {
+  id: string;
+  merchant_id: string;
+  student_id: string | null;
+  raw_request: string;
+  title: string | null;
+  goal: string | null;
+  category: string | null;
+  deliverables: string[] | null;
+  required_skills: string[] | null;
+  difficulty: string | null;
+  estimated_hours: number | null;
+  duration_days: number | null;
+  revision_count: number;
+  is_out_of_scope: boolean;
+  out_of_scope_reason: string | null;
+  suggested_split: string[] | null;
+  status: string;
+  created_at: string;
+};
+
+export type DbApplication = {
+  id: string;
+  project_id: string;
+  student_id: string;
+  match_score: number;
+  score_breakdown: {
+    skill: number;
+    availability: number;
+    experience: number;
+    interest: number;
+    trust: number;
+  };
+  status: string;
+  created_at: string;
+};
