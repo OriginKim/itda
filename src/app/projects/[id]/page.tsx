@@ -20,6 +20,7 @@ import { fadeInTransition } from "@/lib/motion";
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from "@/lib/labels";
 import type { DbApplication, DbMerchant, DbProject, DbStudent } from "@/lib/types";
 import { useCurrentStudentId } from "@/hooks/use-current-student";
+import { useRole } from "@/context/role-context";
 
 type ProjectWithMerchant = DbProject & {
   merchants: Pick<DbMerchant, "name" | "category" | "district"> | null;
@@ -65,6 +66,7 @@ function ScoreBar({
 
 function ProjectDetailContent({ id }: { id: string }) {
   const { studentId, setStudentId } = useCurrentStudentId();
+  const { withRole } = useRole();
   const [project, setProject] = useState<ProjectWithMerchant | null>(null);
   const [students, setStudents] = useState<DbStudent[]>([]);
   const [myApplication, setMyApplication] = useState<DbApplication | null>(null);
@@ -149,7 +151,7 @@ function ProjectDetailContent({ id }: { id: string }) {
       <Container className="max-w-3xl py-20">
         <p className="text-[15px] text-danger">프로젝트를 찾을 수 없습니다.</p>
         <Link
-          href="/projects"
+          href={withRole("/projects")}
           className="mt-4 inline-block text-[15px] font-medium text-brand"
         >
           목록으로 돌아가기
