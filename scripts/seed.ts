@@ -356,7 +356,10 @@ async function main() {
     },
   ];
 
-  const insertedProjects: Record<string, any> = {};
+  const insertedProjects: Record<
+    string,
+    { row: { id: string }; seed: ProjectSeed }
+  > = {};
   for (const seed of projectSeeds) {
     const student = seed.student ? studentByName[seed.student] : null;
     const { data, error } = await db
