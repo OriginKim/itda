@@ -11,7 +11,7 @@
 - **애니메이션**: Framer Motion
 - **아이콘**: lucide-react
 - **DB**: Supabase (Postgres)
-- **AI**: Google Gemini API (`gemini-flash-latest`) — `gemini-2.5-flash`는 신규 API 키에 더 이상 제공되지 않아 최신 flash 계열 별칭으로 대체
+- **AI**: Google Gemini API (`gemini-3.6-flash`) — `gemini-2.5-flash`는 신규 API 키에 더 이상 제공되지 않아(404) Google이 공식 후속 모델로 안내하는 `gemini-3.6-flash`로 대체
 
 ## 시작하기
 

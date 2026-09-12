@@ -7,9 +7,9 @@ import {
 } from "@/lib/prompts";
 import type { StructuredProject } from "@/lib/types";
 
-// gemini-2.5-flash는 신규 API 키에 더 이상 제공되지 않아
-// 최신 flash 계열을 가리키는 별칭 모델로 대체했다.
-const MODEL = "gemini-flash-latest";
+// gemini-2.5-flash는 신규 API 키에 더 이상 제공되지 않아(404),
+// Google이 공식 후속 모델로 안내하는 gemini-3.6-flash(고정 stable 버전)로 대체했다.
+const MODEL = "gemini-3.6-flash";
 const RETRY_INSTRUCTION =
   "이전 응답이 지정된 JSON 스키마를 따르지 않았습니다. 설명 없이, 스키마에 맞는 JSON 객체 하나만 다시 반환하세요.";
 
